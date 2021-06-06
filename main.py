@@ -14,36 +14,53 @@ reste à faire :
 
 port = "/dev/ttyACM0"
 
-arduino = serial.Serial(port, timeout = 1)
-
-while True :
+def recup_et_nettoyage_donnees() :
     donnees_brutes = str(arduino.readline())
     print(donnees_brutes)
     donnees = donnees_brutes[2:-5]
     print(donnees)
 
-    if len(donnees) > 3 :
-        pause = int(donnees[0:1])
-        suivant = int(donnees[1:2])
-        precedent = int(donnees[2:3])
-        volume = int(donnees[3:])
-        print(pause, suivant, precedent, volume)
+    return donnees
 
-        commande_son = "amixer set Master {0}%".format(volume)
-        os.system(commande_son)
+def analyse_donnees() :
+    pause = int(donnees[0:1])
+    suivant = int(donnees[1:2])
+    precedent = int(donnees[2:3])
+    volume = int(donnees[3:])
+    print(pause, suivant, precedent, volume)
 
+    return pause, suivant, precedent, volume
 
-        if pause == 1 :
-            os.system("pytify -pp")
-            time.sleep(1)
-            pause = 0
-            
-        if suivant == 1 :
-            os.system("pytify -n")
-            time.sleep(1)
-            suivant = 0
+while True :
+    try :
+        arduino = serial.Serial(port, timeout = 1)
         
-        if precedent == 1 :
-            os.system("pytify -p")
-            time.sleep(1)
-            precedent = 0
+        donnees = recup_et_nettoyage_donnees()
+        
+        if len(donnees) > 3 :
+            pause = analyse_donnees()[0]
+            suivant = analyse_donnees()[1]
+            precedent = analyse_donnees()[2]
+            volume = analyse_donnees()[3]
+            
+            commande_son = "amixer set Master {0}%".format(volume)
+            os.system(commande_son)
+            
+            if pause == 1 :
+                os.system("pytify -pp")
+                time.sleep(1)
+                pause = 0
+                
+            if suivant == 1 :
+                os.system("pytify -n")
+                time.sleep(1)
+                suivant = 0
+                
+            if precedent == 1 :
+                os.system("pytify -p")
+                time.sleep(1)
+                precedent = 0
+
+    except :
+        print("FR : Un problème est survenu, il peut s'agir d'une erreur lors du traitement des données, ou lors de la connection avec l'arduino. Si cette erreur apparaît à nouveau, veuillez vérifier le port com renseigné plus haut.")
+        print("EN: An error occurred. If it happens again, check the serial port above.")

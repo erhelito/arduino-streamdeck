@@ -1,6 +1,6 @@
 # Arduino "streamdeck"
 
-This is the V1 of my streamdeck, it will be improved. This V1 allows you to lower/higher your computer's volume, pause/play music on spotify, and play next/previous song.
+This is the V1.1 of my streamdeck, it will be improved. This V1.1 allows you to lower/higher your computer's volume, pause/play music on spotify, and play next/previous song.
 For the wiring, se _connectivity.png_
 
 ## Requirements

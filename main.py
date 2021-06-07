@@ -72,5 +72,5 @@ while True :
                 precedent = 0
 
     except :
-            print("FR : Un problème est survenu, il peut s'agir d'une erreur lors du traitement des données. Si cette erreur apparaît à nouveau, vous pouvez contacter Erhelito (erhelito@yahoo.fr).")
-            print("EN: An error occurred. If it happens again, contact Erhelito (erhelito@yahoo.fr).")
+        print("FR : Un problème est survenu, il peut s'agir d'une erreur lors du traitement des données. Si cette erreur apparaît à nouveau, vous pouvez contacter Erhelito (erhelito@yahoo.fr).")
+        print("EN: An error occurred. If it happens again, contact Erhelito (erhelito@yahoo.fr).")

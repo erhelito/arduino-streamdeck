@@ -20,10 +20,19 @@ void setup() {
 }
 
 void loop() {
+    boutons();
+    fonct_volume();
+
+    Serial.flush();
+
+    delay(100);
+}
+
+void boutons() {
     pause = digitalRead(pausePin);
     suivant = digitalRead(suivantPin);
     precedent = digitalRead(precedentPin);
-    
+
     if (pause == 0) {        
         Serial.print(1);
     }
@@ -49,7 +58,9 @@ void loop() {
     else {
         Serial.print(0);
     }
+}
 
+void fonct_volume() {
     volume = analogRead(potentiometrePin);
     volume = map(volume, 0, 1023, 0, 100);
 
@@ -67,8 +78,4 @@ void loop() {
     else {
         Serial.println(volume);
     }
-
-    Serial.flush();
-
-    delay(100);
 }

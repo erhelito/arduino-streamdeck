@@ -42,6 +42,7 @@ while True :
         except :
             print("FR : Un problème est survenu lors de la connection avec l'arduino. Si cette erreur apparaît à nouveau, veuillez vérifier le port com renseigné plus haut.")
             print("EN: An error occurred. If it happens again, check the serial port above.")
+            connection = False
             
         try :        
             donnees = recup_et_nettoyage_donnees()

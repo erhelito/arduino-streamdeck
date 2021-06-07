@@ -33,7 +33,7 @@ void boutons() {
     suivant = digitalRead(suivantPin);
     precedent = digitalRead(precedentPin);
 
-    if (pause == 0) {        
+    if (pause == 1) {        
         Serial.print(1);
     }
 
@@ -42,7 +42,7 @@ void boutons() {
     }
 
 
-    if (suivant == 0) {        
+    if (suivant == 1) {        
         Serial.print(1);
     }
 
@@ -51,7 +51,7 @@ void boutons() {
     }
 
 
-    if (precedent == 0) {        
+    if (precedent == 1) {        
         Serial.print(1);
     }
 

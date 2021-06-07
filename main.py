@@ -10,6 +10,7 @@ reste à faire :
 - couper volume
 - couper micro
 - volume micro
+- améliorer la liaison série (dans le programme arduino)
 """
 
 port = "/dev/ttyACM0"

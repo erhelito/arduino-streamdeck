@@ -24,13 +24,49 @@ void loop() {
     suivant = digitalRead(suivantPin);
     precedent = digitalRead(precedentPin);
     
-    Serial.print(pause);
-    Serial.print(suivant);
-    Serial.print(precedent);
+    if (pause == 0) {        
+        Serial.print(1);
+    }
+
+    else {
+        Serial.print(0);
+    }
+
+
+    if (suivant == 0) {        
+        Serial.print(1);
+    }
+
+    else {
+        Serial.print(0);
+    }
+
+
+    if (precedent == 0) {        
+        Serial.print(1);
+    }
+
+    else {
+        Serial.print(0);
+    }
 
     volume = analogRead(potentiometrePin);
     volume = map(volume, 0, 1023, 0, 100);
-    Serial.println(volume);
+
+    if (volume < 10) {
+        Serial.print("0");
+        Serial.print("0");
+        Serial.println(volume);
+    }
+
+    else if (volume < 100) {
+        Serial.print("0");
+        Serial.println(volume);
+    }
+
+    else {
+        Serial.println(volume);
+    }
 
     Serial.flush();
 

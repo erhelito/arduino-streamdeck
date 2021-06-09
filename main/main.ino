@@ -1,3 +1,14 @@
+// initialisation des valeurs des différents modes, et des broches sur lesquels sont placés les boutons
+int mode1;
+int mode2;
+int mode3;
+
+int mode;
+
+const int mode1Pin = 5;
+const int mode2Pin = 6;
+const int mode3Pin = 7;
+
 // initialisation des valeurs des trois boutons, et des broches sur lesquels ils sont branchés
 int b1;
 int b2;
@@ -15,6 +26,10 @@ const int potentiometrePin = A0;
 
 void setup() {
     // déclaration des inputs et des outputs, et début de la liaison série
+    pinMode(mode1Pin, INPUT);
+    pinMode(mode2Pin, INPUT);
+    pinMode(mode3Pin, INPUT);
+
     pinMode(b1Pin, INPUT);
     pinMode(b2Pin, INPUT);
     pinMode(b3Pin, INPUT);
@@ -24,6 +39,7 @@ void setup() {
 
 void loop() {
     // appel des fonctions boutons de pourcentage (pour traiter les données des différents boutons et du potentiomètre)
+    modes();
     boutons();
     fonct_pourcentage();
 
@@ -34,8 +50,31 @@ void loop() {
     delay(100);
 }
 
+void modes() {
+    // lecture des valeurs des différents boutons des modes, et affichage dans le port série le mode sélectioné
+    mode1 = digitalRead(mode1Pin);
+    mode2 = digitalRead(mode2Pin);
+    mode3 = digitalRead(mode3Pin);
+
+    if (mode1 == 1) {        
+        mode = 1;
+    }
+
+    else if (mode2 == 1)
+    {
+        mode = 2;
+    }
+
+    else if (mode3 == 1) {
+        mode = 3;
+    }
+
+    Serial.print(mode);
+}
+
 void boutons() {
     // lecture des valeurs des différents boutons, et affichage dans le port série
+    // les boucles "if" évitent des bugs (je ne sais pas pourquoi ^^)
     b1 = digitalRead(b1Pin);
     b2 = digitalRead(b2Pin);
     b3 = digitalRead(b3Pin);

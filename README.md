@@ -10,5 +10,5 @@ For the wiring, _connectivity.png_ isn't updated (I'll do this later ^^)
 
 ## Installation
 - upload _main.ino_ into you arduino
-- change your serial port in _main.py_ (line 16, port = "your_serial_port")
+- change your serial port in _main.py_ (line 16, ``port = "your_serial_port"``)
 - run the _main.py_ file, you can put it in your startup applications.
